@@ -1,7 +1,10 @@
-import React from 'react'
+import Input from "@/components/Input";
+import React from "react";
 
 export default function page() {
   return (
-    <div>page</div>
-  )
+    <div>
+      post
+    </div>
+  );
 }
