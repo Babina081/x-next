@@ -4,6 +4,7 @@ import Sidebar from "@/components/Sidebar";
 import News from "@/components/News";
 import { SessionProvider } from "next-auth/react";
 import SessionWrapper from "@/components/SessionWrapper";
+import CommentModal from "@/components/CommentModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,6 +34,7 @@ export default function RootLayout({ children }) {
               <News></News>
             </div>
           </div>
+          <CommentModal></CommentModal>
         </body>
       </html>
     </SessionWrapper>

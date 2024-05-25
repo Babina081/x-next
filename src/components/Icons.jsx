@@ -17,12 +17,15 @@ import {
 } from "firebase/firestore";
 import { app } from "../firebase";
 import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+import { modalState } from "@/atom/modalAtom";
 
 export default function Icons({ id, uid }) {
   const { data: session } = useSession();
   const db = getFirestore(app);
   const [isLiked, setIsLiked] = useState(false);
   const [likes, setLikes] = useState([]);
+  const [open, setOpen] = useRecoilState(modalState);
 
   const likePost = async () => {
     if (session) {
@@ -70,7 +73,10 @@ export default function Icons({ id, uid }) {
 
   return (
     <div className="flex justify-start gap-5 p-2 text-gray-500">
-      <HiOutlineChat className="w-8 h-8 cursor-pointer rounded-full transition duration-500 p-2 ease-in-out hover:text-sky-500 hover:bg-sky-100"></HiOutlineChat>
+      <HiOutlineChat
+        className="w-8 h-8 cursor-pointer rounded-full transition duration-500 p-2 ease-in-out hover:text-sky-500 hover:bg-sky-100"
+        onClick={() => setOpen(!open)}
+      ></HiOutlineChat>
       <div className="flex items-center ">
         {isLiked ? (
           <HiHeart
