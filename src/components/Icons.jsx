@@ -18,7 +18,7 @@ import {
 import { app } from "../firebase";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { modalState } from "@/atom/modalAtom";
+import { modalState, postIdState } from "@/atom/modalAtom";
 
 export default function Icons({ id, uid }) {
   const { data: session } = useSession();
@@ -26,6 +26,7 @@ export default function Icons({ id, uid }) {
   const [isLiked, setIsLiked] = useState(false);
   const [likes, setLikes] = useState([]);
   const [open, setOpen] = useRecoilState(modalState);
+  const [postId, setPostId] = useRecoilState(postIdState);
 
   const likePost = async () => {
     if (session) {
@@ -75,7 +76,15 @@ export default function Icons({ id, uid }) {
     <div className="flex justify-start gap-5 p-2 text-gray-500">
       <HiOutlineChat
         className="w-8 h-8 cursor-pointer rounded-full transition duration-500 p-2 ease-in-out hover:text-sky-500 hover:bg-sky-100"
-        onClick={() => setOpen(!open)}
+        onClick={() => {
+          if (!session) {
+            return signIn();
+            //   } else {
+          }
+          setOpen(!open);
+          setPostId(id);
+          //   }
+        }}
       ></HiOutlineChat>
       <div className="flex items-center ">
         {isLiked ? (
