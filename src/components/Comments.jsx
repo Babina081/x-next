@@ -32,7 +32,8 @@ export default function Comments({ id }) {
         <Comment
           key={comment.id}
           comment={comment.data()}
-          id={comment.id}
+          commentId={comment.id}
+          originalPostId={id}
         ></Comment>
       ))}
     </div>
