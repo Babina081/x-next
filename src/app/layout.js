@@ -13,6 +13,8 @@ export const metadata = {
   description: "A nextjs app created using tailwindcss and nextjs",
 };
 
+export const dynamic = "force-dynamic";
+
 export default function RootLayout({ children }) {
   return (
     <SessionWrapper>
